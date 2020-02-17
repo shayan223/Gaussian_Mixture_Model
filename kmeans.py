@@ -106,7 +106,7 @@ def kmeans(data,numOfClusters):
 data = np.genfromtxt(fname="GMM_dataset_546.txt",delimiter="  ")
 #data = pd.DataFrame(data)
 #print(data)
-K = 20
+K = 3
 r = 1
 kMeansList = []
 bestClustering = 0#holds index of the best Kmeans clustering
@@ -142,6 +142,7 @@ pointPlot = sb.scatterplot(data=data, x='x', y='y', hue=data['cluster'],palette=
 sb.scatterplot(x=centroids[:,0],y=centroids[:,1],color='black',s=150, marker='X')
 
 pointPlot.legend_.remove()
+print(data)
 #######################
 
 
