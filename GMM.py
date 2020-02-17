@@ -113,7 +113,7 @@ def GMM(data,numOfGaus,iterations,kmeansSeeding=None):
     columns = data.shape[1]
     dim = columns #dimensionality of our data
     
-    if(type(kmeansSeeding) == None):
+    if(kmeansSeeding is None):
         mean = np.random.uniform(-1,1,(numOfGaus,dim)) #random mean for every cluster
     else:#seed initial mean with kmeans centroid
         mean = kmeansSeeding
@@ -226,7 +226,7 @@ def GMM(data,numOfGaus,iterations,kmeansSeeding=None):
         iterCount += 1
         #print("Iteration: ", iterCount)
         #if likelihood has gone down, we have an error
-        if(curLikelihood < prevLikelihood):
+        if(curLikelihood < prevLikelihood-1):
             print("ERROR: likelihood decreasing")
             return
         
@@ -253,7 +253,8 @@ def GMM(data,numOfGaus,iterations,kmeansSeeding=None):
 data = np.genfromtxt(fname="GMM_dataset_546.txt",delimiter="  ")
 #print(data)
 clusters = 3
-r = 10
+r = 1
+iterations = 70
 seed = kmeans(data,clusters)[0]
 
 #take the results with the best log likelihood of r trials
@@ -261,7 +262,7 @@ topScore = np.NINF
 resultIndex = 0#keeps track of which result was the best
 resultList = []
 for i in range(r):
-    result = GMM(data, clusters,5,kmeansSeeding=seed)
+    result = GMM(data, clusters,iterations,kmeansSeeding=seed)
     score = result[0]
     if(score > topScore):
         topScore = score
@@ -271,7 +272,9 @@ for i in range(r):
 bestOutcome = resultList[resultIndex]
     
 print("Best likelihood: ", bestOutcome[0])
-
+print("r: ",r)
+print("Iterations: ",iterations)
+print("Seeded = True")
 data = pd.DataFrame(data)
 data.columns = ['x','y']
 data['gaussian'] = bestOutcome[4]

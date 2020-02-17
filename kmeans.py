@@ -106,8 +106,8 @@ def kmeans(data,numOfClusters):
 data = np.genfromtxt(fname="GMM_dataset_546.txt",delimiter="  ")
 #data = pd.DataFrame(data)
 #print(data)
-K = 3
-r = 1
+K = 8
+r = 10
 kMeansList = []
 bestClustering = 0#holds index of the best Kmeans clustering
 for i in tqdm(range(r)):
@@ -124,10 +124,11 @@ avgMSE = finalClustering[1]
 meanSqrSep = finalClustering[2]
 pointToCluster = finalClustering[3]
 
-print(pointToCluster)
-print(data)
+#print(pointToCluster)
+#print(data)
+print()
 print("Average mse:", finalClustering[1])
-print("Mean Square Seperation:", finalClustering[2])   
+#print("Mean Square Seperation:", finalClustering[2])   
 
 
 
@@ -142,7 +143,7 @@ pointPlot = sb.scatterplot(data=data, x='x', y='y', hue=data['cluster'],palette=
 sb.scatterplot(x=centroids[:,0],y=centroids[:,1],color='black',s=150, marker='X')
 
 pointPlot.legend_.remove()
-print(data)
+#print(data)
 #######################
 
 
