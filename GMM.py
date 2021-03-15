@@ -286,7 +286,8 @@ pointPlot = sb.scatterplot(data=data, x='x', y='y', hue=data['gaussian'],palette
 pointPlot.legend_.remove()
 
 
-
+plt.show()
+plt.clf()
 
 
 

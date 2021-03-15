@@ -143,6 +143,10 @@ pointPlot = sb.scatterplot(data=data, x='x', y='y', hue=data['cluster'],palette=
 sb.scatterplot(x=centroids[:,0],y=centroids[:,1],color='black',s=150, marker='X')
 
 pointPlot.legend_.remove()
+
+plt.show()
+plt.clf()
+
 #print(data)
 #######################
 
